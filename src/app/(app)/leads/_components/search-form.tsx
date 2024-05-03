@@ -21,6 +21,14 @@ import { Api, Places, Role } from '@/lib/types'
 import { clearString } from '@/lib/utils'
 import { toast } from 'sonner'
 import { addNewResquest } from '@/actions/places'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { COUNTRIES, NEIGHBORHOOD, STATES, CITIES } from '@/lib/constants'
 const schema = z.object({
   subject: z.string().min(1, { message: 'Digite uma categoria.' }),
   state: z.string().optional(),
@@ -123,8 +131,8 @@ export function SearchForm({
             control={form.control}
             name="subject"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg font-semibold">Busca</FormLabel>
+              <FormItem className="w-full">
+                <FormLabel className="font-semibold">Busca</FormLabel>
                 <FormControl>
                   <Input placeholder="O que deseja buscar" {...field} />
                 </FormControl>
@@ -136,12 +144,25 @@ export function SearchForm({
             control={form.control}
             name="country"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg font-semibold">País</FormLabel>
-                <FormControl>
-                  <Input placeholder="Brasil" {...field} />
-                </FormControl>
-                <FormMessage />
+              <FormItem className="w-full">
+                <FormLabel>Email</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione um país" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {COUNTRIES.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
@@ -149,11 +170,25 @@ export function SearchForm({
             control={form.control}
             name="state"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg font-semibold">Estado</FormLabel>
-                <FormControl>
-                  <Input placeholder="Rio de Janeiro" {...field} />
-                </FormControl>
+              <FormItem className="w-full">
+                <FormLabel>Estado</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione um estado" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {STATES.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
@@ -161,29 +196,58 @@ export function SearchForm({
             control={form.control}
             name="city"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg font-semibold">Cidade</FormLabel>
-                <FormControl>
-                  <Input placeholder="Salvador" {...field} />
-                </FormControl>
+              <FormItem className="w-full">
+                <FormLabel>Cidade</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione uma cidade" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {CITIES.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="neighborhood"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg font-semibold">Bairro</FormLabel>
-                <FormControl>
-                  <Input placeholder="Qual o bairro" {...field} />
-                </FormControl>
+              <FormItem className="w-full">
+                <FormLabel>Bairro</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione um bairro" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {NEIGHBORHOOD.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
         </div>
         <div className="flex flex-row gap-2 items-center mt-4">
-          <Button disabled={!limitExceeded} className="w-36" type="submit">
+          <Button disabled={limitExceeded} className="w-36" type="submit">
             {laoding || isLoading ? (
               <Loader2
                 className="mr-2 size-4 animate-spin"
