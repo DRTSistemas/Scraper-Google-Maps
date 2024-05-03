@@ -1,3 +1,4 @@
+import { saveLeads } from '@/actions/drt'
 import api from '@/lib/api'
 import { Api, Places } from '@/lib/types'
 import { useQuery } from '@tanstack/react-query'
@@ -39,6 +40,8 @@ export function useSearch() {
       const allPlaces: Places[] = responses.flatMap(
         (response) => response.data.places,
       )
+
+      await saveLeads({ leads: allPlaces })
 
       return allPlaces as Places[]
     },

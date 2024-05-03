@@ -4,6 +4,7 @@ import {
   index,
   pgEnum,
   serial,
+  text,
   timestamp,
   varchar,
 } from 'drizzle-orm/pg-core'
@@ -70,4 +71,11 @@ export const userRequests = pgTable('user_requests', {
   id: serial('id').primaryKey(),
   userId: varchar('user_id', { length: 21 }).notNull(),
   createdAt: date('createdAt', { mode: 'date' }).notNull(),
+})
+
+export const leads = pgTable('leads', {
+  id: serial('id').primaryKey(),
+  name: text('name'),
+  phone: text('phone'),
+  category: text('category'),
 })
