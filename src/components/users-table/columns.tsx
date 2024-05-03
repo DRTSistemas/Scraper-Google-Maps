@@ -11,7 +11,10 @@ import {
 } from '../ui/select'
 import { roleEnum } from '@/db/schema'
 import { startTransition } from 'react'
-import { updateRole } from '@/actions/user'
+import { deleteUser, updateRole } from '@/actions/user'
+import { TrashIcon } from '@radix-ui/react-icons'
+import { Button } from '../ui/button'
+import { toast } from 'sonner'
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -19,7 +22,8 @@ import { updateRole } from '@/actions/user'
 export const columns: ColumnDef<User>[] = [
   {
     accessorKey: 'id',
-    header: 'Id',
+    header: () => <div className="hidden" />,
+    cell: () => <div className="hidden" />,
   },
   {
     accessorKey: 'name',
@@ -47,9 +51,9 @@ export const columns: ColumnDef<User>[] = [
                   userId,
                   role: value as 'ADMIN' | 'SOCIO' | 'MEMBER',
                 })
-                console.log('aqui')
+                toast.success('Atualizado com succeso.')
               } catch (err) {
-                console.log(err)
+                toast.error('Ocorreu um erro inesperado.')
               }
             })
           }}
@@ -65,6 +69,28 @@ export const columns: ColumnDef<User>[] = [
             ))}
           </SelectContent>
         </Select>
+      )
+    },
+  },
+  {
+    id: 'delete',
+    cell: ({ row }) => {
+      const userId = row.getValue('id') as string
+
+      return (
+        <Button
+          onClick={() => {
+            startTransition(async () => {
+              try {
+                await deleteUser({ userId })
+              } catch (er) {}
+            })
+          }}
+          variant={'destructive'}
+          size={'icon'}
+        >
+          <TrashIcon className="size-5" />
+        </Button>
       )
     },
   },
