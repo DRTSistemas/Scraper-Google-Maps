@@ -22,6 +22,13 @@
       "when": 1714764757878,
       "tag": "0002_majestic_magus",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1714768319402,
+      "tag": "0003_lyrical_gauntlet",
+      "breakpoints": true
     }
   ]
 }

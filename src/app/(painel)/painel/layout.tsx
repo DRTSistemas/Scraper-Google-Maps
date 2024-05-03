@@ -1,26 +1,30 @@
 import Link from 'next/link'
-import { CircleUser, Menu, Users, MapPinned } from 'lucide-react'
+import { Menu, Users, MapPinned } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
 import React from 'react'
+import { logout } from '@/lib/auth/actions'
+import { validateRequest } from '@/lib/auth/validate-request'
+import { redirect } from 'next/navigation'
 
-export default function PainelLayout({
+export default async function PainelLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await validateRequest()
+
+  if (!session.user) {
+    redirect('/')
+  }
+
+  if (session.user.role !== 'ADMIN') {
+    redirect('/leads')
+  }
+
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -77,22 +81,11 @@ export default function PainelLayout({
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1" />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <form action={logout}>
+            <Button type="submit" variant="secondary" size="icon">
+              Sair
+            </Button>
+          </form>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           {children}

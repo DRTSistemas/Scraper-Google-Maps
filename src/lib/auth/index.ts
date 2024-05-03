@@ -23,6 +23,7 @@ export const lucia = new Lucia(adapter, {
       avatar: attributes.avatar,
       createdAt: attributes.createdAt,
       role: attributes.role,
+      blocked: attributes.blocked,
       updatedAt: attributes.updatedAt,
     }
   },

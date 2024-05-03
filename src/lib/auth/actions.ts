@@ -7,6 +7,7 @@ import { lucia } from '.'
 import { Scrypt } from 'lucia'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { validateRequest } from './validate-request'
 
 export interface ActionResponse<T> {
   fieldError?: Partial<Record<keyof T, string | undefined>>
@@ -38,13 +39,13 @@ export async function login(
 
   if (!existingUser) {
     return {
-      formError: 'Incorrect email or password',
+      formError: 'Senha ou email incorretos',
     }
   }
 
   if (!existingUser || !existingUser?.hashedPassword) {
     return {
-      formError: 'Incorrect email or password',
+      formError: 'Senha ou email incorretos',
     }
   }
 
@@ -54,9 +55,11 @@ export async function login(
   )
   if (!validPassword) {
     return {
-      formError: 'Incorrect email or password',
+      formError: 'Senha ou email incorretos',
     }
   }
+
+  if (existingUser.blocked) redirect('/block')
 
   const session = await lucia.createSession(existingUser.id, {})
   const sessionCookie = lucia.createSessionCookie(session.id)
@@ -66,4 +69,22 @@ export async function login(
     sessionCookie.attributes,
   )
   return redirect('/leads')
+}
+
+export async function logout(): Promise<{ error: string } | void> {
+  const { session } = await validateRequest()
+  console.log(session)
+  if (!session) {
+    return {
+      error: 'No session found',
+    }
+  }
+  await lucia.invalidateSession(session.id)
+  const sessionCookie = lucia.createBlankSessionCookie()
+  cookies().set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes,
+  )
+  return redirect('/')
 }

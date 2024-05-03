@@ -1,5 +1,5 @@
 'use client'
-
+import { Ban, CircleCheck } from 'lucide-react'
 import { ColumnDef } from '@tanstack/react-table'
 import { User } from 'lucia'
 import {
@@ -11,13 +11,11 @@ import {
 } from '../ui/select'
 import { roleEnum } from '@/db/schema'
 import { startTransition } from 'react'
-import { deleteUser, updateRole } from '@/actions/user'
+import { blockUser, deleteUser, updateRole } from '@/actions/user'
 import { TrashIcon } from '@radix-ui/react-icons'
 import { Button } from '../ui/button'
 import { toast } from 'sonner'
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+import { Badge } from '../ui/badge'
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -26,8 +24,24 @@ export const columns: ColumnDef<User>[] = [
     cell: () => <div className="hidden" />,
   },
   {
+    accessorKey: 'blocked',
+    header: () => <div className="hidden" />,
+    cell: () => <div className="hidden" />,
+  },
+  {
     accessorKey: 'name',
     header: 'Nome',
+    cell: ({ row }) => {
+      const nome = row.getValue('name') as string
+      const blocked = row.getValue('blocked') as boolean
+      console.log(blocked)
+      return (
+        <div>
+          {nome}{' '}
+          {blocked ? <Badge variant={'destructive'}>Bloqueado</Badge> : null}
+        </div>
+      )
+    },
   },
   {
     accessorKey: 'email',
@@ -73,24 +87,46 @@ export const columns: ColumnDef<User>[] = [
     },
   },
   {
-    id: 'delete',
+    id: 'actions',
     cell: ({ row }) => {
       const userId = row.getValue('id') as string
-
+      const blocked = row.getValue('blocked') as boolean
       return (
-        <Button
-          onClick={() => {
-            startTransition(async () => {
-              try {
-                await deleteUser({ userId })
-              } catch (er) {}
-            })
-          }}
-          variant={'destructive'}
-          size={'icon'}
-        >
-          <TrashIcon className="size-5" />
-        </Button>
+        <div className="flex flex-row gap-2">
+          <Button
+            onClick={() => {
+              startTransition(async () => {
+                try {
+                  await blockUser({ userId })
+                  toast.success('Usuário atualizado com succeso.')
+                } catch (err) {
+                  toast.error('Ocorreu um erro inesperado.')
+                }
+              })
+            }}
+            variant={blocked ? 'success' : 'destructive'}
+            size={'icon'}
+          >
+            {blocked ? (
+              <CircleCheck className="size-4" />
+            ) : (
+              <Ban className="size-4" />
+            )}
+          </Button>
+          <Button
+            onClick={() => {
+              startTransition(async () => {
+                try {
+                  await deleteUser({ userId })
+                } catch (er) {}
+              })
+            }}
+            variant={'destructive'}
+            size={'icon'}
+          >
+            <TrashIcon className="size-4" />
+          </Button>
+        </div>
       )
     },
   },

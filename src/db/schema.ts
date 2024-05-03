@@ -13,6 +13,7 @@ export const users = pgTable(
     emailVerified: boolean('email_verified').default(false).notNull(),
     hashedPassword: varchar('hashed_password', { length: 255 }),
     avatar: varchar('avatar', { length: 255 }),
+    blocked: boolean('blocked').default(false).notNull(),
     role: roleEnum('role').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at', { mode: 'date' }).$onUpdate(

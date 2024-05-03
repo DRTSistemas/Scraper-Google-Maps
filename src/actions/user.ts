@@ -70,3 +70,22 @@ export async function addUser(input: z.infer<typeof userSchema>) {
 
   redirect('/painel')
 }
+
+export async function blockUser({ userId }: { userId: string }) {
+  const userExisting = await db.query.users.findFirst({
+    where: (table, { eq }) => eq(table.id, userId),
+  })
+
+  if (!userExisting) {
+    throw new Error('Usuário já existe')
+  }
+
+  await db
+    .update(users)
+    .set({
+      blocked: !userExisting.blocked,
+    })
+    .where(eq(users.id, userId))
+
+  redirect('/painel')
+}
