@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CircleUser, Home, Menu, Users, MapPinned } from 'lucide-react'
+import { CircleUser, Menu, Users, MapPinned } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -37,13 +37,6 @@ export default async function Dashboard() {
                 href="#"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <Home className="h-4 w-4" />
-                Home
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
                 <Users className="h-4 w-4" />
                 Usuários
               </Link>
@@ -75,13 +68,6 @@ export default async function Dashboard() {
                 </Link>
                 <Link
                   href="#"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <Home className="h-5 w-5" />
-                  Home
-                </Link>
-                <Link
-                  href="#"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
                 >
                   <Users className="h-5 w-5" />
@@ -110,7 +96,7 @@ export default async function Dashboard() {
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           <div className="flex items-center">
-            <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
+            <h1 className="text-lg font-semibold md:text-2xl">Usuários</h1>
           </div>
           <DataTable columns={columns} data={data} />
         </main>

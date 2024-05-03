@@ -1,0 +1,1 @@
+ALTER TABLE "contatos_maps_users" ADD COLUMN "name" varchar(255) NOT NULL;

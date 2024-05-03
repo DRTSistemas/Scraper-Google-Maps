@@ -15,6 +15,13 @@
       "when": 1714762643685,
       "tag": "0001_amusing_archangel",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1714764757878,
+      "tag": "0002_majestic_magus",
+      "breakpoints": true
     }
   ]
 }

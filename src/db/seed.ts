@@ -17,6 +17,7 @@ async function runSeed() {
     await db.insert(users).values({
       id: userId,
       email: 'admin@drtsistemas.com.br',
+      name: 'DRT Admin',
       hashedPassword,
       emailVerified: true,
       role: 'ADMIN',
