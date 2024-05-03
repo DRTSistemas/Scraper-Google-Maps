@@ -1,6 +1,8 @@
-import { boolean, index, timestamp, varchar } from 'drizzle-orm/pg-core'
+import { boolean, index, pgEnum, timestamp, varchar } from 'drizzle-orm/pg-core'
 
 import { pgTable } from './utils'
+
+export const roleEnum = pgEnum('role', ['ADMIN', 'SOCIO', 'MEMBER'])
 
 export const users = pgTable(
   'users',
@@ -10,6 +12,7 @@ export const users = pgTable(
     emailVerified: boolean('email_verified').default(false).notNull(),
     hashedPassword: varchar('hashed_password', { length: 255 }),
     avatar: varchar('avatar', { length: 255 }),
+    role: roleEnum('role').notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at', { mode: 'date' }).$onUpdate(
       () => new Date(),
