@@ -1,6 +1,6 @@
 {
-  "id": "716aca7f-e0b5-42d3-a450-3215ea6aad03",
-  "prevId": "8e5ee96a-5f12-47ba-bc92-8c42e2c7c2f7",
+  "id": "6b83113e-8807-4bbb-986f-6a30df42f276",
+  "prevId": "1f5ba0b3-a708-4ea2-b32c-c0e53c3e88e1",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -76,6 +76,34 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
+    "contatos_maps_user_requests": {
+      "name": "contatos_maps_user_requests",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(21)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "contatos_maps_users": {
       "name": "contatos_maps_users",
       "schema": "",
@@ -88,6 +116,12 @@
         },
         "email": {
           "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
@@ -110,6 +144,13 @@
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
+        },
+        "blocked": {
+          "name": "blocked",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
         },
         "role": {
           "name": "role",

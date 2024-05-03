@@ -1,3 +1,9 @@
+DO $$ BEGIN
+ CREATE TYPE "role" AS ENUM('ADMIN', 'SOCIO', 'MEMBER');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "contatos_maps_password_reset_tokens" (
 	"id" varchar(40) PRIMARY KEY NOT NULL,
 	"user_id" varchar(21) NOT NULL,
@@ -10,12 +16,21 @@ CREATE TABLE IF NOT EXISTS "contatos_maps_sessions" (
 	"expires_at" timestamp with time zone NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "contatos_maps_user_requests" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"user_id" varchar(21) NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "contatos_maps_users" (
 	"id" varchar(21) PRIMARY KEY NOT NULL,
 	"email" varchar(255) NOT NULL,
+	"name" varchar(255) NOT NULL,
 	"email_verified" boolean DEFAULT false NOT NULL,
 	"hashed_password" varchar(255),
 	"avatar" varchar(255),
+	"blocked" boolean DEFAULT false NOT NULL,
+	"role" "role" NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp,
 	CONSTRAINT "contatos_maps_users_email_unique" UNIQUE("email")

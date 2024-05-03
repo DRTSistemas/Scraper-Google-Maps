@@ -1,0 +1,1 @@
+ALTER TABLE "contatos_maps_user_requests" RENAME COLUMN "date" TO "createdAt";

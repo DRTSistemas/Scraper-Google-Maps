@@ -1,1 +1,0 @@
-ALTER TABLE "contatos_maps_users" ADD COLUMN "blocked" boolean DEFAULT false NOT NULL;

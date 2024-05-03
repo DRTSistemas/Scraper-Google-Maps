@@ -1,4 +1,12 @@
-import { boolean, index, pgEnum, timestamp, varchar } from 'drizzle-orm/pg-core'
+import {
+  boolean,
+  date,
+  index,
+  pgEnum,
+  serial,
+  timestamp,
+  varchar,
+} from 'drizzle-orm/pg-core'
 
 import { pgTable } from './utils'
 
@@ -57,3 +65,9 @@ export const passwordResetTokens = pgTable(
     userIdx: index('password_token_user_idx').on(t.userId),
   }),
 )
+
+export const userRequests = pgTable('user_requests', {
+  id: serial('id').primaryKey(),
+  userId: varchar('user_id', { length: 21 }).notNull(),
+  createdAt: date('createdAt', { mode: 'date' }).notNull(),
+})
