@@ -41,9 +41,11 @@ export function useSearch() {
         (response) => response.data.places,
       )
 
-      await saveLeads({ leads: allPlaces })
+      const filteredPlaces = allPlaces.filter((place) => place.phoneNumber)
 
-      return allPlaces as Places[]
+      await saveLeads({ leads: filteredPlaces })
+
+      return filteredPlaces as Places[]
     },
   })
 
