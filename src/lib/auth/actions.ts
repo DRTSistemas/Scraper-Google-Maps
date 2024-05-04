@@ -8,6 +8,8 @@ import { Scrypt } from 'lucia'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { validateRequest } from './validate-request'
+import { sessions } from '@/db/schema'
+import { eq } from 'drizzle-orm'
 
 export interface ActionResponse<T> {
   fieldError?: Partial<Record<keyof T, string | undefined>>
@@ -60,6 +62,9 @@ export async function login(
   }
 
   if (existingUser.blocked) redirect('/block')
+
+  // delete other sessions this user
+  await db.delete(sessions).where(eq(sessions.userId, existingUser.id))
 
   const session = await lucia.createSession(existingUser.id, {})
   const sessionCookie = lucia.createSessionCookie(session.id)
