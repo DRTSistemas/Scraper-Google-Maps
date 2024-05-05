@@ -6,6 +6,10 @@ import { SearchForm } from './search-form'
 
 import { Button } from '@/components/ui/button'
 import { Role } from '@/lib/types'
+import { LogOut } from 'lucide-react'
+import { SubmitButton } from '@/components/submit-button'
+import { logout } from '@/lib/auth/actions'
+import Link from 'next/link'
 
 interface PlacesProps {
   userId: string
@@ -22,8 +26,20 @@ export function Places({ userId, requestsToday, role }: PlacesProps) {
         <h1 className="text-2xl font-bold leading-[1.1] md:text-3xl">
           Parâmetros de pesquisa
         </h1>
-        <div className="flex gap-2 items-center">
-          <Button>Como usar o InfoLead?</Button>
+        <div className="flex gap-2 flex-col items-start">
+          <div className="flex">
+            <Button>Como usar o InfoLead?</Button>
+            <form action={logout}>
+              <SubmitButton variant={'ghost'}>
+                Sair <LogOut className="size-4 ml-2" />
+              </SubmitButton>
+            </form>
+          </div>
+          {role === 'ADMIN' && (
+            <Button asChild variant={'outline'}>
+              <Link href="/painel">Painel</Link>
+            </Button>
+          )}
         </div>
       </div>
       <SearchForm
