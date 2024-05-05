@@ -23,7 +23,7 @@ export function Login() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
-        <CardTitle>Login</CardTitle>
+        <CardTitle className="text-3xl">Login</CardTitle>
         <CardDescription>
           Faça login em sua conta para capturar seus leads
         </CardDescription>
