@@ -6,6 +6,7 @@
 
 CONTRATO 
 
+```
 {
   "request": {
     "url": "/api/users",
@@ -26,3 +27,4 @@ CONTRATO
     }
   }
 }
+```
