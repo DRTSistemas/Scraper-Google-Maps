@@ -57,7 +57,15 @@ export function SearchForm({
   const [isLoading, setIsloading] = React.useState<boolean>(false)
 
   const isAdmin = role === 'ADMIN'
-  const limitExceeded = requestsToday > 2 ? isAdmin : false
+  const isMember = role === 'MEMBER'
+
+  let limitExceeded = false
+
+  if (isAdmin) {
+    limitExceeded = false
+  } else {
+    limitExceeded = isMember ? requestsToday > 0 : requestsToday > 2
+  }
 
   function xlsxExport(places: Places[]) {
     const rows = places.map((item, i) => ({
