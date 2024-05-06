@@ -82,9 +82,7 @@ export default async function PainelLayout({
           </Sheet>
           <div className="w-full flex-1" />
           <form action={logout}>
-            <Button type="submit" variant="secondary" size="icon">
-              Sair
-            </Button>
+            <Button type="submit">Sair</Button>
           </form>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">

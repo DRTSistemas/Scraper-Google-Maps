@@ -1,6 +1,5 @@
 'use server'
 import { db } from '@/db'
-/* eslint @typescript-eslint/no-explicit-any:0, @typescript-eslint/prefer-optional-chain:0 */
 
 import { isWithinExpirationDate, TimeSpan, createDate } from 'oslo'
 
@@ -19,6 +18,8 @@ import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { env } from '@/env'
 import { EmailTemplate, sendMail } from '../email'
+/* eslint @typescript-eslint/no-explicit-any:0, @typescript-eslint/prefer-optional-chain:0 */
+import { subMonths, isBefore } from 'date-fns'
 
 export interface ActionResponse<T> {
   fieldError?: Partial<Record<keyof T, string | undefined>>
@@ -72,6 +73,16 @@ export async function login(
 
   if (existingUser.blocked) redirect('/block')
 
+  const twelveMonthsAgo = subMonths(new Date(), 12)
+
+  // block account if created twelve months ago
+  if (isBefore(existingUser.createdAt, twelveMonthsAgo)) {
+    await db
+      .update(users)
+      .set({ blocked: true })
+      .where(eq(users.id, existingUser.id))
+  }
+
   // delete other sessions this user
   await db.delete(sessions).where(eq(sessions.userId, existingUser.id))
 
@@ -82,6 +93,7 @@ export async function login(
     sessionCookie.value,
     sessionCookie.attributes,
   )
+
   return redirect('/leads')
 }
 
