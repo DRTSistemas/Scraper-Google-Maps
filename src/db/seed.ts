@@ -8,7 +8,7 @@ async function runSeed() {
   const start = Date.now()
 
   const userExisting = await db.query.users.findFirst({
-    where: (table, { eq }) => eq(users.email, 'admin@drtsistemas.com.br'),
+    where: (table, { eq }) => eq(table.email, 'admin@drtsistemas.com.br'),
   })
 
   if (!userExisting) {
