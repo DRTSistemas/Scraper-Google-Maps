@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance } from 'axios'
 
 const myHeaders = new Headers()
-myHeaders.append('X-API-KEY', 'd4e4f4a84f697cc3f93fdc116fb210befc88e099')
+myHeaders.append('X-API-KEY', '270abb142856aa8d6d180b9ed3e12f303d5be21e')
 myHeaders.append('Content-Type', 'application/json')
 
 const api: AxiosInstance = axios.create({
@@ -9,7 +9,7 @@ const api: AxiosInstance = axios.create({
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'X-API-KEY': 'd4e4f4a84f697cc3f93fdc116fb210befc88e099',
+    'X-API-KEY': '270abb142856aa8d6d180b9ed3e12f303d5be21e',
   },
 })
 

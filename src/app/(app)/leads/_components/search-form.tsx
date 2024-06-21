@@ -153,24 +153,10 @@ export function SearchForm({
             name="country"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Email</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione um país" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {COUNTRIES.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <FormLabel>País</FormLabel>
+                <FormControl>
+                  <Input placeholder="Digite um país" {...field} />
+                </FormControl>
               </FormItem>
             )}
           />
@@ -180,23 +166,9 @@ export function SearchForm({
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Estado</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione um estado" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {STATES.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <Input placeholder="Digite um estado" {...field} />
+                </FormControl>
               </FormItem>
             )}
           />
@@ -206,23 +178,9 @@ export function SearchForm({
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Cidade</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione uma cidade" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {CITIES.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <Input placeholder="Digite uma cidade" {...field} />
+                </FormControl>
               </FormItem>
             )}
           />
@@ -233,23 +191,9 @@ export function SearchForm({
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Bairro</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione um bairro" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {NEIGHBORHOOD.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <Input placeholder="Digite um bairro" {...field} />
+                </FormControl>
               </FormItem>
             )}
           />
