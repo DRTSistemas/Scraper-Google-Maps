@@ -21,6 +21,7 @@ import { Api, Places, Role } from '@/lib/types'
 import { clearString } from '@/lib/utils'
 import { toast } from 'sonner'
 import { addNewResquest } from '@/actions/places'
+/*
 import {
   Select,
   SelectContent,
@@ -29,6 +30,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { COUNTRIES, NEIGHBORHOOD, STATES, CITIES } from '@/lib/constants'
+*/
 const schema = z.object({
   subject: z.string().min(1, { message: 'Digite uma categoria.' }),
   state: z.string().optional(),
