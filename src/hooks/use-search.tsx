@@ -25,12 +25,10 @@ export function useSearch() {
       for (let i = 1; i <= 20; i++) {
         const query = `/places`
         const p = {
-          q,
+          q: `${q} ${location}`,
           gl,
-          location,
           hl: 'pt-br',
           page: i,
-          autocorrect: false,
         }
 
         requests.push(api.post(query, p))
