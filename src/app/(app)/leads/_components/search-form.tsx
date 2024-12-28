@@ -76,6 +76,12 @@ export function SearchForm({
       telefone: item.phoneNumber,
       categoria: item.category,
       endereco: item.address,
+      latitude: item.latitude ?? '',
+      longitude: item.longitude ?? '',
+      rating: item.rating ?? '',
+      ratingCount: item.ratingCount ?? '',
+      website: item.website ?? '',
+      cid: item.cid ?? '',
     }))
 
     const worksheet = XLSX.utils.json_to_sheet(rows)
@@ -85,7 +91,21 @@ export function SearchForm({
     /* fix headers */
     XLSX.utils.sheet_add_aoa(
       worksheet,
-      [['Id', 'Nome', 'Telefone', 'Categoria', 'Endereço']],
+      [
+        [
+          'Id',
+          'Nome',
+          'Telefone',
+          'Categoria',
+          'Endereço',
+          'Latitude',
+          'Longitude',
+          'Rating',
+          'Rating Count',
+          'Website',
+          'cid',
+        ],
+      ],
       {
         origin: 'A1',
       },

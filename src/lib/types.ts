@@ -9,6 +9,7 @@ export type Places = {
   category: string
   phoneNumber: string
   cid: string
+  website: string
 }
 
 export type Res = {
