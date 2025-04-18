@@ -1,0 +1,332 @@
+/* PRIMEIRA PAGINA
+------------------------*/
+#primeira-pagina{
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/home.jpg);
+	background-size: cover;
+	padding: 30px 0px;
+}
+.titulo {
+	font: normal normal 120px/1.4em futura-lt-w01-book,sans-serif;
+	color: white;
+}
+.subtitulo{
+	font: normal normal 40px/1.4em futura-lt-w01-light,sans-serif;
+	color: white;
+}
+.pessoas {
+	width:100%;
+	height: 100%;
+}
+
+/* QUEM SOMOS
+-------------------------*/
+#segunda-pagina {
+	margin-top: 70px;
+	margin-bottom: 140px;
+}
+
+#segunda-pagina a {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(190,225,230);
+	padding: 23px 32px;
+	text-decoration: none;
+	font-size: 30px;
+}
+
+#segunda-pagina a:hover {
+	background-color: rgb(238,255,66);
+}
+
+/* ESPERAMOS VOCE
+--------------------------*/
+.caixa {
+	width: 613px;
+	height: 324px;
+	background-color: rgb(97,242,119);
+	margin-top: -200px;
+	margin-right:80px;
+	float: right;
+}
+.interior-caixa {
+	margin: 51px 66px 59px 51px;
+    padding: 0px 8px;
+}
+.interior-caixa h1{
+	font-size: 40px;
+}
+.interior-caixa h2{
+	font-size:25px;
+	margin-bottom: 30px;
+}
+.interior-caixa p {
+	line-height: 1.6em;
+	font: normal normal normal 18px/1.4em futura-lt-w01-light,sans-serif;
+}
+.registrar {
+	margin-top: 38px;
+}
+.registrar a{
+	width: 246px;
+	height: 72px;
+	background-color:rgb(37,60,87);
+	padding: 25px 75px;
+	text-decoration: none;
+	color:white;
+	font-size: 30px;
+	letter-spacing: 1px;
+}
+.registrar a:hover{
+	background-color: rgb(190,225,230);
+	color: black;
+}
+
+/* Doações
+------------------------------*/
+ #terceira-pagina{
+	margin-bottom: 150px;
+}
+.imagem2{
+	width: 943px;
+	height: 638px;
+	margin-left: 70px;
+	float: right;
+	background: url(../img/pessoas2.png) no-repeat;
+	background-position:right;
+	background-attachment: fixed;
+
+}
+.caixa2 {
+	width: 780px;
+	height: 475px;
+	background-color: rgb(97,242,119);
+	margin-top: -380px;
+	margin-left:150px;
+	float: left;
+	margin-bottom: 150px;
+}
+.interior-caixa2 {
+	margin: 80px 30px 30px 80px;
+	padding: 0px 20px;
+}
+.interior-caixa2 h1{
+	font:normal normal normal 65px/1.4em futura-lt-w01-book,sans-serif;
+}
+.interior-caixa2 h2{
+	font: normal normal normal 29px/1.4em futura-lt-w01-book,sans-serif;
+	margin-bottom: 30px;
+}
+.interior-caixa2 p {
+	line-height: 1.6em;
+	font: normal normal normal 18px/1.4em futura-lt-w01-light,sans-serif;
+
+}
+.registrar2 {
+	margin-top: 70px;
+	float: right;
+}
+.registrar2 a{
+	width: 246px;
+	height: 72px;
+	background-color:rgb(37,60,87);
+	padding:25px 75px;
+	text-decoration: none;
+	color:white;
+	font-size: 30px;
+
+}
+.registrar2 a:hover{
+	background-color: rgb(190,225,230);
+	color: black;
+}
+
+
+/* INDICAÇÃO PREMIADA
+-----------------------------*/
+#quinta-pagina {
+	background-color: rgb(242,242,242);
+	display: inline-block;
+	padding-top: 50px;
+	padding-bottom:500px;
+}
+.indicacao h1{
+	font: normal normal normal 65px/1.4em futura-lt-w01-book,sans-serif;
+}
+.indicacao h2 {
+	font: normal normal normal 29px/1.4em futura-lt-w01-book,sans-serif;
+}
+.indicacao p {
+	font: normal normal normal 18px/1.4em futura-lt-w01-light,sans-serif;
+}
+.container3 {
+	margin-top: -450px;
+}
+.container3 a {
+	background-color: rgb(97,242,119);
+    padding: 23px 32px;
+    text-decoration: none;
+    font-size: 30px;
+}
+.container3 a:hover {
+	background-color: rgb(24,41,61);
+	color: white !important;
+}
+
+/* DEPOIMENTOS
+------------------------*/
+
+#sexta-pagina h3 {
+	font: normal normal normal 29px/1.4em futura-lt-w01-book,sans-serif;
+	margin-bottom: 20px;
+}
+.depoimentos {
+	background-color: rgb(86,231,90);
+	padding: 35px 36px;
+}
+.depoimentos p {
+	font: normal normal normal 18px/1.4em futura-lt-w01-light,sans-serif;
+}
+
+/* MEDIAS
+-------------------------------------*/
+
+@media (min-width: 200px) and (max-width:767px) {
+	.titulo {
+		font-size: 35px;
+	}
+	.subtitulo {
+		font-size: 25px;
+	}
+	#segunda-pagina {
+		margin-bottom: 60px;
+	}
+	#segunda-pagina a {
+		padding: 30px 32px;
+		font-size: 30px;
+	}
+	#terceira-pagina {
+		margin-bottom: 60px;
+	}
+	#terceira-pagina .imagem img {
+		width: 100%;
+	}
+	#terceira-pagina .caixa {
+		float: none;
+		width: auto;
+		height: auto;
+		margin-right: 0;
+		margin-top: -120px;
+	}
+	#terceira-pagina .interior-caixa2 {
+		margin: 35px;
+		padding: 0px 20px;
+	}
+	.interior-caixa h1 {
+		font-size: 32px
+	}
+	.interior-caixa h2 {
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
+	.interior-caixa p {
+		line-height: 1.6em;
+    	font-size: 15px;
+    	padding-bottom: 15px;
+	}
+	#quarta-pagina .caixa2 {
+		width: 100%;
+		height: 100%;
+		margin-left: 0;
+		margin-bottom: 60px;
+	}
+	#quarta-pagina .interior-caixa2 {
+		margin: 35px;
+		padding: 0px 20px;
+	}
+	.interior-caixa2 h1 {
+		font-size: 32px
+	}
+	.interior-caixa2 h2 {
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
+	.interior-caixa2 p {
+		line-height: 1.6em;
+    	font-size: 15px;
+		padding-bottom: 15px;
+		text-align: center;
+	}
+	#quarta-pagina .registrar2{
+		margin-top: 25px;
+		float: none;
+		text-align: center;
+	}
+	#quinta-pagina {
+		padding-bottom: 80px;
+	}
+	#quinta-pagina img {
+		width: 100%;
+	}
+	#quinta-pagina .indicacao h1 {
+		font-size: 40px;
+	}
+	#quinta-pagina .indicacao h2 {
+		font-size: 25px;
+	}
+	#quinta-pagina .indicacao p {
+		padding: 25px;
+		text-align: justify;
+	}
+	#quinta-pagina .container3 {
+		margin-top: 30px;
+		text-align: center;
+	}
+
+	#sexta-pagina .depoimentos {
+		padding: 30px 40px;
+	}
+	#setima-pagina img {
+		width: 100%;
+		height: 100%;
+	}
+	.caixa {
+	width: 500px;
+	height: 491px;
+	background-color: rgb(97,242,119);
+	margin-top: -260px;
+	float: left;
+	}
+	.interior-caixa {
+	margin: 60px 5px;
+	}
+	.interior-caixa h1{
+	font-size: 35px;
+	}
+	.interior-caixa h2{
+	font-size: 20px;
+	}
+	.interior-caixa p {
+	line-height: 1.6em;
+	font-size: 15px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

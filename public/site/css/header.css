@@ -1,0 +1,37 @@
+/* HEADER
+-------------------------*/
+#site{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+}
+h1 ,h2,h3,span, p {
+    color: #253C57;
+}
+/* BARAR DE NAVEGAÇÃO
+------------------------*/
+.barra-cima, .barra-baixo{
+    height: 45px;
+    background-color: rgb(97,242,119);
+    background-size: 100%;
+}
+
+.logo {
+    font-weight: bold;
+    margin-left: -20px;
+    color: #4E6636;
+}
+
+ul.menu-principal li a {
+    padding: 10px 25px !important;
+    color: #253C57 !important;
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+    .navbar .navbar-brand img {
+        width: 80px;
+    }
+}

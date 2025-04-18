@@ -1,0 +1,73 @@
+/* COMUNIDADE
+----------------------------------------------------------------------------------------------------------------------------------------------------*/
+.titulo-comunidade {
+    background-image: url(../img/bg-principal.png);
+    background-size: cover;
+}
+
+.titulo-comunidade h1{
+    font: normal normal normal 75px/1.4em futura-lt-w01-book,sans-serif;
+    color: #253C57;
+}
+
+.card_planos {
+    background: rgba(155, 203, 108, 0.52);
+    border: 1px solid;
+    padding: 35px;
+    margin-top: -35px;
+}
+
+.indicacao a {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(37, 60, 87, 1);
+    color: #FFF !important;
+    padding: 25px 75px;
+    text-decoration: none;
+}
+
+.indicacao a:hover {
+    background-color: rgb(190,225,230);
+    color: rgba(37, 60, 87, 1) !important;
+
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+    .titulo-comunidade h1 {
+        font-size: 40px;
+    }
+    .caixa1-comunidade {
+        padding: 35px;
+    }
+    .interior-caixa1-comunidade p {
+        text-align: justify;
+    }
+    .planos {
+        height: auto !important;
+    }
+    .card_planos p {
+        margin-bottom: 25px !important;
+    }
+    .card_planos h4 {
+        margin-bottom: 0 !important;
+    }
+    .caixa3-comunidade,
+    .caixa4-comunidade {
+        padding: 35px;
+    }
+    .interior-caixa3-comunidade {
+        margin-bottom: 40px !important;
+    }
+    .interior-caixa4-comunidade {
+        margin-bottom: 0px !important;
+    }
+    .interior-caixa3-comunidade h1,
+    .interior-caixa4-comunidade h1 {
+        text-align: center;
+        font-size: 29px;
+    }
+    .interior-caixa3-comunidade p,
+    .interior-caixa4-comunidade p {
+        text-align: justify;
+    }
+}

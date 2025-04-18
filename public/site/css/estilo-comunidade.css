@@ -1,0 +1,115 @@
+/* COMUNIDADE
+----------------------------------------------------------------------------------------------------------------------------------------------------*/
+.titulo-comunidade h1{
+	font: normal normal normal 75px/1.4em futura-lt-w01-book,sans-serif;
+	color: #4682B4;
+}
+
+.caixa1-comunidade{
+	background-color: rgb(97,242,119);
+	padding: 80px 30px 50px 100px;
+	z-index: 3;
+}
+.imagem {
+	z-index: 2;
+}
+.caixa2-comunidade {
+	background-color: rgb(238,255,66);
+	padding: 80px 30px 50px 100px;
+	z-index: 1;
+}
+
+.caixa3-comunidade {
+	background-color: rgb(97,242,119);
+	padding: 80px 30px 50px 100px;
+}
+.caixa4-comunidade {
+	background-color: rgb(238,255,66);
+	padding: 80px 30px 50px 100px;
+}
+.imagem1-comunidade{
+	background-image: url(../img/pessoas-comunidade.png);
+	background-position: right;
+}
+.imagem2-comunidade{
+	background-image: url(../img/planta-comunidade.png);
+	background-position: left;
+}
+.interior-caixa1-comunidade,
+.interior-caixa2-comunidade,
+.interior-caixa3-comunidade,
+.interior-caixa1-comunidade h1 {
+	  font: normal normal normal 29px/1.4em futura-lt-w01-book,sans-serif;
+	  margin-bottom: 15px;
+}
+.interior-caixa1-comunidade,
+.interior-caixa2-comunidade,
+.interior-caixa3-comunidade,
+.interior-caixa4-comunidade p{
+	font-size: 18px;
+	margin: 0px;
+}
+
+.plantar {
+	background-image: url(../img/bg-principal.png);
+	background-size: cover;
+}
+.plante-semente {
+	top: 3280px;
+}
+.paragrafos{
+	margin-top: 100px;
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+	.titulo-comunidade h1 {
+		font-size: 40px;
+	}
+	.caixa1-comunidade {
+		padding: 35px;
+		z-index: 1;
+	}
+	.imagem {
+		z-index:2;
+		margin-left: auto;
+	}
+	.interior-caixa1-comunidade p {
+		text-align: justify;
+	}
+	.objetivo {
+		margin-left: 0 !important;
+	}
+	.objetivo .caixa2-comunidade {
+		padding: 50px 35px 15px 35px;
+	}
+	.objetivo .interior-caixa2-comunidade {
+		margin-bottom: 0 !important;
+	}
+	.objetivo .interior-caixa2-comunidade h1 {
+		font-size: 29px;
+		text-align: center;
+	}
+	.objetivo .interior-caixa2-comunidade p {
+		text-align: justify;
+	}
+	.caixa3-comunidade,
+	.caixa4-comunidade {
+		padding: 35px;
+		margin-bottom: 20px;
+	}
+	.interior-caixa3-comunidade {
+		margin-bottom: 40px !important;
+	}
+	.interior-caixa4-comunidade {
+		margin-bottom: 0px !important;
+	}
+	.interior-caixa3-comunidade h1,
+	.interior-caixa4-comunidade h1 {
+		text-align: center;
+		font-size: 29px;
+	}
+	.interior-caixa3-comunidade p,
+	.interior-caixa4-comunidade p {
+		text-align: justify;
+	}
+}

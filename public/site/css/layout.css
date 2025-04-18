@@ -1,0 +1,53 @@
+html,
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/background.jpg');
+    /*
+    position: absolute;
+    top: 0px;
+    */
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+a {
+    color: #18293D !important;
+}
+
+/****************** FONTS ******************/
+@font-face {
+    font-family: "Futura_Book";
+    src: url("../fonts/futura/Futura_Book_font.ttf");
+}
+@font-face {
+    font-family: "Futura_Book_Italic";
+    src: url("../fonts/futura/futura-lt-light.ttf");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Futura_Book" !important;
+}
+
+p,
+span,
+a {
+    font-family: "Futura_Book_Italic" !important;
+}
+
+button.btn-primary {
+    background: linear-gradient(150deg, #19b7e0 0%, #80f793 100%) !important;
+    border: 0px solid #409C8C !important;
+    border-radius: 50px !important;
+    outline: none !important;
+    box-shadow: none !important;
+}

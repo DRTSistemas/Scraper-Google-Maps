@@ -1,0 +1,119 @@
+/* Conteudo
+----------------------------------*/
+.titulo-doacao h1 {
+	font: normal normal normal 75px/1.4em futura-lt-w01-book,sans-serif;
+}
+
+.caixa1-doacao {
+	background-color: rgb(190,225,230);
+	padding: 80px 30px 50px 100px;
+}
+.caixa2-doacao{
+	background-color: rgb(97,242,119);
+	padding: 30px 0px 50px 10px;
+}
+.caixa3-doacao{
+	background-color: rgb(190,225,230);
+	padding: 80px 30px 50px 100px;
+	margin-top: -170px;
+	z-index: 3;
+}
+.interior-caixa1-doacao,
+.interior-caixa2-doacao,
+.interior-caixa3-doacao,
+.interior-caixa1-doacao h1 {
+	font: normal normal normal 29px/1.4em futura-lt-w01-book,sans-serif;
+	margin-bottom: 15px;
+}
+.interior-caixa1-doacao, .interior-caixa2-doacao, .interior-caixa3-doacao, .interior-caixa4-doacao p{
+	font-size: 16px;
+}
+.titulo-caixa2 {
+	margin-left: 70px;
+}
+
+.border{
+	color: rgb(190,225,230);
+	margin-top: 180px;
+	z-index: 1;
+
+}
+.seed-money {
+	margin-top: -155px;
+	margin-left: 50px;
+}
+.borda1{
+	border: 1px solid rgb(190,225,230);
+	margin-top: 90px;
+	margin-bottom: 20px;
+}
+
+.tecnologia{
+	padding: 50px 80px;
+	background-image: url(../img/tecnologia.png);
+	background-size: cover;
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+	.titulo-doacao h1 {
+		font-size: 40px;
+	}
+	.caixa1-doacao {
+		padding: 35px;
+	}
+	.interior-caixa1-doacao h1 {
+		font-size: 24px;
+		text-align: center;
+	}
+	.interior-caixa1-doacao p {
+		text-align: justify;
+	}
+
+	.um{
+		margin-left:15% !important;
+		width: 70% !important;
+	}
+	
+	.titulo-caixa2 {
+		margin-left: 0;
+	}
+	.titulo-caixa2 h1 {
+		font-size: 29px;
+		text-align: center;
+		margin-bottom: 25px;
+	}
+	.caixa2-doacao {
+		padding: 35px;
+	}
+	.caixa3-doacao,
+	.caixa4-doacao {
+		padding: 35px;
+	}
+	.interior-doacaounidade {
+		margin-bottom: 40px !important;
+	}
+	.interior-doacaounidade {
+		margin-bottom: 0px !important;
+	}
+	.interior-caixa3-doacao h1,
+	.interior-caixa4-doacao h1 {
+		text-align: center;
+		font-size: 29px;
+	}
+	.interior-caixa3-doacao p,
+	.interior-caixa4-doacao p {
+		text-align: justify;
+	}
+	.borda1 {
+		margin-top: 20px;
+	}
+	.tecnologia {
+		padding: 35px;
+	}
+	.tecnologia p {
+		text-align: justify;
+	}
+	.w-100 {
+		width: 0px;
+	}
+}
