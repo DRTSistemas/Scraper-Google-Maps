@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build",
     "start": "next start",
+    "dev": "next dev",
     "lint": "next lint",
     "db:push": "dotenv drizzle-kit push:pg",
     "db:generate": "dotenv drizzle-kit generate:pg",
@@ -30,6 +31,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "dotenv": "^16.4.7",
     "dotenv-cli": "^7.4.1",
     "drizzle-orm": "^0.30.10",
     "input-otp": "^1.2.4",
