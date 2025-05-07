@@ -1,0 +1,52 @@
+/* INDICAÇÃO
+-----------------------------------*/
+.tecnologia{
+    margin-top: 40px;
+    padding: 50px 80px;
+    background-image: url(../img/tecnologia.png);
+    background-size: cover;
+}
+.tecnologia h1 {
+    font: normal normal normal 75px/1.4em futura-lt-w01-book,sans-serif;
+}
+.imagem1 {
+    margin-left: 70px;
+}
+.caixa-introducao {
+    background-color: rgb(238,255,66);
+    padding: 40px 15%;
+    z-index: 1;
+}
+
+@media (min-width: 320px) and (max-width:767px) {
+    .tecnologia {
+        margin: 0px;
+    }
+    .tecnologia h1 {
+        text-align: left;
+        font-size: 30px;
+    }
+    .interior-caixa-introducao h1{
+        margin-left: -30px;
+        margin-bottom: 20px;
+    }
+    .direita {
+        margin-top: 0;
+    }
+    .texto {
+        margin:0 10%;
+    }
+    .svg {
+        width: 35%;
+        height: 100%;
+        margin-bottom: 20px;
+    }
+    .direta h2{
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+    .direta p{
+        margin-bottom: 10px;
+        font-size: 11px;
+    }
+}
