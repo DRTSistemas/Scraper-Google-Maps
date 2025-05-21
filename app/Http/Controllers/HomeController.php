@@ -109,8 +109,8 @@ class HomeController extends BaseController
         $config = $this->config();
 
         // Obtém as chaves do banco de dados e converte em array
-        $apiKeys = explode(';', $config['api_key_serper']);
-        $apiKeys = array_map('trim', $apiKeys); // remove espaços extras
+        $apiKeys = explode("\r\n", $config['api_key_serper']);
+        $apiKeys = array_map('trim', $apiKeys);
         $apiIndex = 0; // índice atual da chave
 
         $onlyMobile = filter_var($request->input('onlyMobile'), FILTER_VALIDATE_BOOLEAN);
@@ -135,7 +135,11 @@ class HomeController extends BaseController
 
             //dd($apiIndex, $apiKey);
 
-            if (isset($checkData['balance']) && $checkData['balance'] < 0) {
+            if (
+                (!isset($checkData['balance'])) || // balance não está definido
+                (isset($checkData['balance']) && $checkData['balance'] < 0) || // balance negativo
+                (isset($checkData['statusCode']) && $checkData['statusCode'] == 403) // erro de autorização
+            ) {
                 // Remove do array atual
                 unset($apiKeys[$apiIndex]);
                 $apiKeys = array_values($apiKeys); // reindexar
@@ -144,7 +148,7 @@ class HomeController extends BaseController
                 DB::table('configs')
                 ->where('name', 'api_key_serper')
                 ->update([
-                    'value' => implode(';', $apiKeys)
+                    'value' => implode("\r\n", $apiKeys)
                 ]);
 
                 // Reinicia

@@ -81,7 +81,8 @@
 
                                 <div class="input-group">
 
-                                    <input type="text" name="api_key_serper" id="input-api_key_serper" class="form-control form-control-alternative{{ $errors->has('api_key_serper') ? ' is-invalid' : '' }}" placeholder="{{ __('API Key Serper Dev') }}" value="{{ old('api_key_serper', $config['api_key_serper']) }}" required>
+                                    <textarea name="api_key_serper" id="input-api_key_serper" class="form-control form-control-alternative{{ $errors->has('api_key_serper') ? ' is-invalid' : '' }}" rows="20" placeholder="Insira uma chave por linha" required>{{ ltrim(old('api_key_serper', $config['api_key_serper'])) }}</textarea>
+                                    <!-- <input type="text" name="api_key_serper" id="input-api_key_serper" class="form-control form-control-alternative{{ $errors->has('api_key_serper') ? ' is-invalid' : '' }}" placeholder="{{ __('API Key Serper Dev') }}" value="{{ old('api_key_serper', $config['api_key_serper']) }}" required> -->
 
                                     @if ($errors->has('api_key_serper'))
 

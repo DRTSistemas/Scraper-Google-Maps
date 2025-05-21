@@ -192,16 +192,23 @@
         <table class="table table-responsive" id="tableExtract">
           <thead>
             <tr>
-              <th scope="col">NOME</th>
-              <th scope="col">ENDEREÇO</th>
-              <th scope="col">LATITUDE</th>
-              <th scope="col">LONGITUDE</th>
-              <th scope="col">AVALIACAO</th>
-              <th scope="col">CONTAGEM AVALIACAO</th>
-              <th scope="col">CATEGORIA</th>
-              <th scope="col">TELEFONE</th>
-              <th scope="col">SITE</th>
-              <th scope="col">TERMO DE PESQUISA</th>
+                <th scope="col">Consulta</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Endereço Completo</th>
+                <th scope="col">Logradouro</th>
+                <th scope="col">Número</th>
+                <th scope="col">Complemento</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">CEP</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Nota</th>
+                <th scope="col">Avaliações</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Site</th>
             </tr>
           </thead>
           <tbody>
@@ -246,6 +253,22 @@
             $('i.fa-clipboard').tooltip('show');
             setTimeout(function(){ $('i.fa-clipboard').tooltip('hide'); }, 1000);
         }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const dadosSalvos = localStorage.getItem('SpyLeads_UltimaPesquisa');
+            if (dadosSalvos) {
+                const dados = JSON.parse(dadosSalvos);
+
+                $('#pais').val(dados.country !== "N/A" ? dados.country : '');
+                $('#estado').val(dados.state !== "N/A" ? dados.state : '');
+                $('#cidade').val(dados.city !== "N/A" ? dados.city : '');
+                $('#bairro').val(dados.neighborhood !== "N/A" ? dados.neighborhood : '');
+                $('#input-buscar').val(dados.search !== "N/A" ? dados.search : '');
+                $('#only_mobile').prop('checked', dados.onlyMobile === "Mobile");
+            }
+        });
     </script>
 
     <script>
@@ -337,6 +360,8 @@
                 onlyMobile: $('#only_mobile').is(":checked") ? "Mobile" : "Todos"
             };
 
+            localStorage.setItem('SpyLeads_UltimaPesquisa', JSON.stringify(data));
+
             // Criando a mensagem com todos os termos da pesquisa
             let message = `
                 <strong>Termos da pesquisa:</strong><br>
@@ -399,21 +424,51 @@
 
                                 $('#findPhonesInDataBase').text(data.places.length || Object.keys(data.places).length);
 
+                                // <th scope="col">Consulta</th>
+                                // <th scope="col">Nome</th>
+                                // <th scope="col">Endereço Completo</th>
+                                // <th scope="col">Logradouro</th>
+                                // <th scope="col">Número</th>
+                                // <th scope="col">Complemento</th>
+                                // <th scope="col">Bairro</th>
+                                // <th scope="col">Cidade</th>
+                                // <th scope="col">Estado</th>
+                                // <th scope="col">CEP</th>
+                                // <th scope="col">Latitude</th>
+                                // <th scope="col">Longitude</th>
+                                // <th scope="col">Categoria</th>
+                                // <th scope="col">Nota</th>
+                                // <th scope="col">Avaliações</th>
+                                // <th scope="col">Telefone</th>
+                                // <th scope="col">Site</th>
+
                                 $.each(data.places, function(i, place) {
                                     try {
+
+                                        let parseAddress = parseEndereco(place?.address)
+
                                         $('table.table > tbody:last-child')
                                             .append(`
                                                 <tr>
+                                                    <td>${term}</td>
                                                     <td>${place?.title || ''}</td>
                                                     <td>${place?.address || ''}</td>
+
+                                                    <td>${parseAddress?.logradouro || ''}</td>
+                                                    <td>${parseAddress?.numero || ''}</td>
+                                                    <td>${parseAddress?.complemento || ''}</td>
+                                                    <td>${parseAddress?.bairro || ''}</td>
+                                                    <td>${parseAddress?.cidade || ''}</td>
+                                                    <td>${parseAddress?.estado || ''}</td>
+                                                    <td>${parseAddress?.cep || ''}</td>
+
                                                     <td>${place?.latitude || ''}</td>
                                                     <td>${place?.longitude || ''}</td>
+                                                    <td>${place?.category || ''}</td>
                                                     <td>${place?.rating || ''}</td>
                                                     <td>${place?.ratingCount || ''}</td>
-                                                    <td>${place?.category || ''}</td>
                                                     <td>${place?.phoneNumber || ''}</td>
                                                     <td>${place?.website || ''}</td>
-                                                    <td>${term}</td>
                                                 </tr>
                                             `);
                                     } catch(err) {
@@ -460,6 +515,65 @@
             });
             
         });
+
+        function parseEndereco(endereco) {
+            const resultado = {
+                logradouro: '',
+                numero: '',
+                complemento: '',
+                bairro: '',
+                cidade: '',
+                estado: '',
+                cep: ''
+            };
+
+            // Extrair CEP (último bloco)
+            const cepMatch = endereco.match(/(\d{5}-\d{3})$/);
+            if (cepMatch) {
+                resultado.cep = cepMatch[1];
+                endereco = endereco.replace(cepMatch[0], '').trim().replace(/[\s,]+$/, '');
+            }
+
+            // Extrair estado (duas letras antes do CEP)
+            const estadoMatch = endereco.match(/[-,\s]+([A-Z]{2})$/);
+            if (estadoMatch) {
+                resultado.estado = estadoMatch[1];
+                endereco = endereco.replace(estadoMatch[0], '').trim();
+            }
+
+            // Extrair cidade (última vírgula antes do estado)
+            const cidadeMatch = endereco.match(/,([^,-]+)$/);
+            if (cidadeMatch) {
+                resultado.cidade = cidadeMatch[1].trim();
+                endereco = endereco.replace(/,([^,-]+)$/, '').trim();
+            }
+
+            // Extrair bairro (último hífen antes da cidade)
+            const bairroMatch = endereco.match(/-\s*([^,-]+)$/);
+            if (bairroMatch) {
+                resultado.bairro = bairroMatch[1].trim();
+                endereco = endereco.replace(/-\s*([^,-]+)$/, '').trim();
+            }
+
+            // Extrair logradouro, número e complemento (tentativa por padrões comuns)
+            const logradouroMatch = endereco.match(/^(.+?),\s*(.*)$/);
+            if (logradouroMatch) {
+                resultado.logradouro = logradouroMatch[1].trim();
+                const resto = logradouroMatch[2];
+
+                // Tentativa de capturar número e complemento com base em hífens ou vírgulas
+                const numeroComplemento = resto.split(/\s*-\s*/);
+                resultado.numero = numeroComplemento[0]?.trim() || '';
+
+                if (numeroComplemento.length > 1) {
+                    resultado.complemento = numeroComplemento.slice(1).join(' - ').trim();
+                }
+            } else {
+                resultado.logradouro = endereco.trim(); // fallback
+            }
+
+            return resultado;
+        }
 
         function replaceAllOccurrences(inputString, oldStr, newStr){
             while (inputString.indexOf(oldStr) >= 0)
