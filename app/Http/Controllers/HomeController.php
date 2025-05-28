@@ -137,7 +137,7 @@ class HomeController extends BaseController
 
             if (
                 (!isset($checkData['balance'])) || // balance não está definido
-                (isset($checkData['balance']) && $checkData['balance'] < 0) || // balance negativo
+                (isset($checkData['balance']) && $checkData['balance'] <= 0) || // balance negativo
                 (isset($checkData['statusCode']) && $checkData['statusCode'] == 403) // erro de autorização
             ) {
                 // Remove do array atual
