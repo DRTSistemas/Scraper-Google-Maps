@@ -84,10 +84,12 @@ class ProfileAdminController extends BaseController
 
         $password = Hash::make($request->get('password'));
 
+        /*
         DB::connection('suporte')->table('users')
             ->where('username', auth()->user()->username)
             ->update(['password' => $password]);
-
+        */
+            
         auth()->user()->update(['password' => $password]);
 
 
